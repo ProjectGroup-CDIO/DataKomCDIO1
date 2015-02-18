@@ -82,14 +82,14 @@ public class Kommu {
 				}				
 			}
 			scanner.close();
-		}
+		} else System.out.println("Unable to establish connection");
 	}
 	public void printMenu() {
 		System.out.println("Press S and ENTER to read scale");
 		System.out.println("Press T and ENTER to tare scale");
 		System.out.println("Press Z and ENTER to zero scale");
-		System.out.println("Write D \"<message>\" and ENTER to Display message on weight display");
-		System.out.println("Write DW and ENTER to display weight on scale");
+		System.out.println("Write D \"<message>\" and ENTER to display message on weight display");
+		System.out.println("Write DW and ENTER to display weight on scale"); //doesnt work?
 	}
 	
 //	public void selectInput(input) {
