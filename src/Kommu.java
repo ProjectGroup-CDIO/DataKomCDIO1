@@ -16,22 +16,28 @@ import javax.swing.*;
 public class Kommu {
 
 	@SuppressWarnings("deprecation")
-	public void Kommu() {
-		JFrame frame = new JFrame("asd");
+	public void kommu() {
+//		JFrame frame = new JFrame("asd");
 		//Data input
-		String IPinput = (String) JOptionPane.showInputDialog(frame, "input IP address");
-		String PortAdrres = (String) JOptionPane.showInputDialog(frame, "input port address");
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Input the server IP address: ");
+		String IPinput = (String) scanner.nextLine();
+		System.out.println("Input the server application port number: ");
+		String PortAddress = (String) scanner.nextLine();
+		
+		
+//		String IPinput = (String) JOptionPane.showInputDialog(frame, "input IP address");
+//		String PortAdrres = (String) JOptionPane.showInputDialog(frame, "input port address");
 
 		Socket s = null;  
 		DataOutputStream outputStream = null;
 		InputStreamReader inputstream = null;
 		
-		System.out.println("IpAdress " +IPinput);
-		System.out.println("Port address " + PortAdrres);
-		Scanner scanner = new Scanner(System.in);
+		System.out.println("IP Adress: " +IPinput);
+		System.out.println("Port: " + PortAddress);
 
 		try {
-			s = new Socket(IPinput,Integer.parseInt(PortAdrres));
+			s = new Socket(IPinput,Integer.parseInt(PortAddress));
 			
 			outputStream = new DataOutputStream(s.getOutputStream());
 			
@@ -44,17 +50,18 @@ public class Kommu {
 		}
 		
 		BufferedReader d = new BufferedReader(inputstream);
-		printMenu();
 		
 		//Check for om ports og sockets ikke er null, hvis de ikke er 
 		if(s != null && outputStream != null && inputstream != null){
+			System.out.println("Connection Established");
+			printMenu();
 			//scanner tjekker for om der er en string
 			while(scanner.hasNext()){
 				
 				PrintWriter w = new PrintWriter(outputStream,true);
 				
 				String dataInput = scanner.nextLine();
-				System.out.println(dataInput);
+//				System.out.println(dataInput);
 				
 				try{
 					
@@ -74,6 +81,7 @@ public class Kommu {
 					System.err.println("IOException:  " + e);
 				}				
 			}
+			scanner.close();
 		}
 	}
 	public void printMenu() {
