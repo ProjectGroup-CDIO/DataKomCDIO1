@@ -28,7 +28,7 @@ public class Kommu {
 		
 		System.out.println("IpAdress " +IPinput);
 		System.out.println("Port address " + PortAdrres);
-
+		
 		Scanner scanner = new Scanner(System.in);
 
 		try {
@@ -38,23 +38,30 @@ public class Kommu {
 			
 			inputstream = new InputStreamReader(s.getInputStream());
 			
-			
 		} catch (UnknownHostException e) {
 			System.err.println("Don't know about host: hostname");
 		} catch (IOException e) {
 			System.err.println("Couldn't get I/O for the connection to: hostname");
 		}
+		
 		BufferedReader d = new BufferedReader(inputstream);
+		
 		//Check for om ports og sockets ikke er null, hvis de ikke er 
 		if(s != null && outputStream != null && inputstream != null){
+			//scanner tjekker for om der er en string
 			while(scanner.hasNext()){
 				
-				PrintWriter w = new PrintWriter(outputStream);
+				PrintWriter w = new PrintWriter(outputStream,true);
 				
 				String dataInput = scanner.nextLine();
 				System.out.println(dataInput);
+				
 				try{
-					w.write("S");
+					
+					w.print(dataInput + "\r\n");
+					w.flush();
+					
+					
 					//this get the reply from the server if any
 					String ReplyMess = d.readLine();
 					if(ReplyMess != null){
