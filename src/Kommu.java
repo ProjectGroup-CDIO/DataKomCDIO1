@@ -20,7 +20,7 @@ public class Kommu {
 		JFrame frame = new JFrame("asd");
 		//Data input
 		String IPinput = (String) JOptionPane.showInputDialog(frame, "input IP address");
-		String PortAdrres =(String) JOptionPane.showInputDialog(frame, "input port address");
+		String PortAdrres = (String) JOptionPane.showInputDialog(frame, "input port address");
 
 		Socket s = null;  
 		DataOutputStream outputStream = null;
@@ -28,7 +28,6 @@ public class Kommu {
 		
 		System.out.println("IpAdress " +IPinput);
 		System.out.println("Port address " + PortAdrres);
-		
 		Scanner scanner = new Scanner(System.in);
 
 		try {
@@ -45,6 +44,7 @@ public class Kommu {
 		}
 		
 		BufferedReader d = new BufferedReader(inputstream);
+		printMenu();
 		
 		//Check for om ports og sockets ikke er null, hvis de ikke er 
 		if(s != null && outputStream != null && inputstream != null){
@@ -72,11 +72,22 @@ public class Kommu {
 					System.err.println("Trying to connect to unknown host: " + e);
 				} catch (IOException e) {
 					System.err.println("IOException:  " + e);
-				}
-				
-
+				}				
 			}
-
 		}
 	}
+	public void printMenu() {
+		System.out.println("Press S and ENTER to read scale");
+		System.out.println("Press T and ENTER to tare scale");
+		System.out.println("Press Z and ENTER to zero scale");
+		System.out.println("Write D \"<message>\" and ENTER to Display message on weight display");
+		System.out.println("Write DW and ENTER to display weight on scale");
+	}
+	
+//	public void selectInput(input) {
+//		switch (input) {
+//		case S: 
+//		}
+//	}
+	
 }
